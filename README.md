@@ -16,6 +16,16 @@ Run it in your local server appache and run the html files using firfox browser.
 
 <h3>Server Side appliction</h3>
 
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
+-- Create Application that you will use in future as redirect-uri
 You can get the short summary of the server side OAuth 2 on <a href ="https://github.com/tigist/OAuth-2.0/wiki/Server-side-authentication> read </a>
 
 -- Create Application that you will use in future as redirect-uri
