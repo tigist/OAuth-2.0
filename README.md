@@ -10,6 +10,7 @@ OAuth for Server side application
 <h3>Client side application demo</h3>
 Download the JavaScript file
 Run it in your local server appache and run the html files using firfox browser.
+<h3>Server Side appliction</h3>
 
 <h3>Requirements</h3>
 -- Create App engine account <a href = "https://accounts.google.com/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://appengine.google.com/&ltmpl=ae"> create account</a>
