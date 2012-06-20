@@ -8,7 +8,7 @@ This project allows you have short summary about the recent OAuth2 approachs, ad
 
 OAuth for Server side application
 <h3>Client side application</h3>
-You can get the shor summary of the client side OAuth 2 on <a href ="https://github.com/tigist/OAuth-2.0/wiki/Client-side-Authentication"> wiki</h3>
+You can get the shor summary of the client side OAuth 2 on <a href ="https://github.com/tigist/OAuth-2.0/wiki/Client-side-Authentication"> wiki</a>
 Download the JavaScript file
 Run it in your local server appache and run the html files using firfox browser.
 <h3>Server Side appliction</h3>
