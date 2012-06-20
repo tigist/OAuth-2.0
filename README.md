@@ -24,3 +24,13 @@ You can get the short summary of the server side OAuth 2 on <a href ="https://gi
 
 -- Create Application that you will use in future as redirect-uri
 
+-- Create Application that you will use in future as redirect-uri
+
+-- Create Application that you will use in future as redirect-uri
+
+-- Create Application that you will use in future as redirect-uri
+
+-- Create Application that you will use in future as redirect-uri
+
+-- Create Application that you will use in future as redirect-uri
+
