@@ -10,3 +10,4 @@ OAuth for Server side application
 <h3>Requirements</h3>
 -- Create App engine account <a href = "https://accounts.google.com/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://appengine.google.com/&ltmpl=ae"> create account</a>
 
+-- Create Application that you will use in future as redirect-uri
