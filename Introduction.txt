@@ -1,4 +1,9 @@
-**** Server side OAuth 2.0 ***
+*** Client side OAuth 2.0 demo***
+In this sample you can see how client side OAuth 2 is used to access your google calendar. The demo lets you to create event and retrieve event.
 
-- Create applciation on google app engine
-- 
+**** Server side OAuth 2.0 demo***
+Requirement to run the application
+--Eclipse 
+--Plugin
+--Display the access token and your profile
+-- Create applciation on google app engine
