@@ -11,6 +11,7 @@ OAuth for Server side application
 You can get the short summary of the client side OAuth 2 on <a href ="https://github.com/tigist/OAuth-2.0/wiki/Client-side-Authentication"> wiki</a>
 
 Download the JavaScript file for sample implementation
+
 Run it in your local server appache and run the html files using firfox browser.
 
 <h3>Server Side appliction</h3>
