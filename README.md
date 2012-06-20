@@ -21,7 +21,5 @@ You can get the short summary of the server side OAuth 2 on <a href ="https://gi
 
 <h3> Requirements </h3>
 
--- Create App engine account <a href = "https://accounts.google.com/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://appengine.google.com/&ltmpl=ae"> create account</a>
 
--test
 
