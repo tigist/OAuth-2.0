@@ -1,0 +1,228 @@
+<html ng-app>
+  <head><br>
+<style type="text/css">
+.content {
+       width: 75%;
+       background-color: #F3F3F3;
+       border: 1px solid #999;
+       margin: 2px auto;
+     }
+ p {
+       text-align: justify;
+       line-height: 1.5;
+       margin: 5px 4px 10px 10px;
+     }
+  h1 {
+       font-size: 1.75em;
+       font-weight: bold;
+       text-align: center;
+       margin: 2px 20px 5px 10px;
+     }
+     h2 {
+       font-size: 1.1em;
+       font-weight: bold;
+       text-align: left;
+       text-transform: uppercase;
+       margin: 2px 5px -2px 10px;
+     }
+
+</style>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script> 
+    <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+    <script src="angular-1.0.0rc9.min.js"></script>
+    </head>
+  <body>
+    <h2 align="center">OAuth2.0 Client side authentication with calendar demo.</h2>
+<script type="text/javascript">
+	var popup1,popup2;
+	window.onload = function() {
+	popup1 = new Epoch('popup1','popup',document.getElementById('startdate'),false);
+	popup2 = new Epoch('popup2','popup',document.getElementById('enddate'),false);
+
+	};
+
+
+	var clientId = '621565343614';
+    var apiKey = 'AIzaSyB1AwXl7wOwjTOtGaO9zzznL2TfjyoaUTU';
+    var scopes = 'https://www.googleapis.com/auth/calendar';
+	
+	function handleClientLoad() {
+        gapi.client.setApiKey(apiKey);
+        window.setTimeout(checkAuth,1);
+      }
+
+      function checkAuth() {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+      }
+
+      function handleAuthResult(authResult) {
+        var authorizeButton = document.getElementById('authorize-button');
+        if (authResult) {
+          authorizeButton.style.visibility = 'hidden';
+		  } else {
+          authorizeButton.style.visibility = '';
+          authorizeButton.onclick = handleAuthClick;
+        }
+      }
+
+      function handleAuthClick(event) {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        return false;
+		
+      }
+	
+	function Ctrl($scope) {
+	   	//var eventInfo = {summary : 'test', location: 'myoffice', start : {}, end : {}};
+	$scope.eventInfo = {};
+		
+	$scope.process = function () {
+		var dtval = document.myForm.startdate.value;
+		var dt =  new Date(dtval);
+		var result = dt.toISOString();
+		$scope.form.start.dateTime = result;
+		
+		var dtval2 =  document.myForm.enddate.value; 
+		var dt2 =  new Date(dtval2);
+		var result = dt2.toISOString();
+		//document.myForm.enddate.value =result;
+		$scope.form.end.dateTime = result;
+
+	}
+		
+	$scope.save = function() { 
+	
+		var dtval = document.myForm.startdate.value;
+		var dt =  new Date(dtval);
+		var result = dt.toISOString();
+		$scope.form.start.dateTime = result;
+	
+	    var dtval2 =  document.myForm.enddate.value; 
+		var dt2 =  new Date(dtval2);
+		var result = dt2.toISOString();
+		//document.myForm.enddate.value =result;
+		$scope.form.end.dateTime = result;
+
+		eventInfo = angular.copy($scope.form); 
+		//var values = JSON.stringify(eventInfo);
+		
+		resource = eventInfo;
+		gapi.client.load('calendar', 'v3', function() {	
+		var request = gapi.client.calendar.events.insert({ 'calendarId': 'primary', 'resource': resource });
+		request.execute(function(resp) {  
+		
+		console.log(resp);
+		});
+		});
+		$scope.form.start.dateTime ='';
+		$scope.form.end.dateTime ='';
+		$scope.form.summary ='';
+		$scope.form.location='';
+		
+	};
+	
+	}
+		
+		// function to retrieve recent event information from calendar project
+	        function makeApiCallLast() {  
+	
+		gapi.client.load('calendar', 'v3', function() { 
+		var request = gapi.client.calendar.events.list({  
+		'calendarId': 'primary' 
+		});
+ 		request.execute(function(resp) {
+		var output, output1,output2, output3 ;
+		for (var i = resp.items.length - 1 ; i > resp.items.length - 2; i--) {
+		var summary = resp.items[i].summary;
+		var location = resp.items[i].location;
+		
+		var start = resp.items[i].start.dateTime;
+		var startValue = new Date(start);
+		var startValueC = startValue.toUTCString();
+		
+		var end = resp.items[i].end.dateTime;
+		var endValue = new Date(end);
+		var endValueC = endValue.toUTCString();
+
+		output = 'Summary  :  "' + summary + '"\n' ;
+		output1 = 'Where: "' + location + '"\n';
+		output2 = 'Start at:' + startValueC ;
+		output3 = 'End at:' + endValueC ;
+
+		$('#result').html(output);
+		$('#result1').html(output1);
+		$('#result2').html(output2);
+		$('#result3').html(output3);
+
+		}
+	});
+	});
+	}
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script> 
+	<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+  <table  class="content">
+	<tr>
+	  <td width="402"><div style="border:thick"  ><table>
+	   	    <tr >
+	      <td width="10"></td>  
+
+  <p>Here you can create events on your google calendar and retrieve event <br> information from your calendar.
+Make sure that you are logged in your gmail account.<p>
+<!--Add a button for the user to click to initiate auth sequence -->
+ <button id="authorize-button"  style="visibility: hidden" > Authorize </button>  <br /><br /><br />
+
+		  
+	      <td >
+<h4>Create event in your google calendar</h4>
+<div ng-controller="Ctrl" >
+	        <form name="myForm" >
+	       
+	          <label>Event summary:</label>
+	          <input type="text" ng-model="form.summary" value="summary" size =" 33"  />
+	          <br/>
+	         
+	          <label>Location:</label>
+	          <input type="text" ng-model="form.location" value="office" />
+	          <br/>
+	        
+	          <label>Start time:</label>
+
+<input ng-model="form.start.dateTime" type="text" name="startdate" id="startdate" />
+           
+			<br/>
+	          <label>End time:</label>
+           
+ <input ng-model="form.end.dateTime" type="text" name="enddate" id="enddate" /><br><br>
+             
+ 
+
+              <button ng-click="save()" id="btnAdd">Creat event</button>
+              </form>
+			
+	        </div>
+         </td>
+	     </tr>
+	    <tr >
+	      <td></td>
+	      <td ><h4>In order to view your event detail click on display button.</h4><br /><br />
+          <div id="result"></div>
+          <div id="result1"></div>
+          <div id="result2"></div>
+          <div id="result3"></div><br />
+          <button id="display" onClick ="makeApiCallLast();" > Display event</button>
+<a href="http://netsolet.heliohost.org/index.html"> Home </a> 
+          </td>
+	      <td >&nbsp;</td>
+        </tr>
+	    
+   </table></div>
+    <td width="300"><strong>Note:</strong><br/><p>You have to follow the following date time format. This is required for correct date time format conversion by the system<br /> YYYY MM DD HH:MM or MM/DD/YYYY HH:MM. (e.g. 2012 06 06 10:35 /  06/06/2012 10:35  </p> <p> Optionaly you can add second by adding :SS <br>e.g. 2012 06 06 10:35:45 </td></tr></div><br>
+ 
+       
+	</table>
+
+  </body>
+</html>

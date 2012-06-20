@@ -1,0 +1,170 @@
+<html >
+  <head>
+<style type="text/css">
+.content {
+       width: 75%;
+       background-color: #F3F3F3;
+       border: 1px solid #999;
+       margin: 2px auto;
+     }
+ p {
+       text-align: justify;
+       line-height: 1.5;
+       margin: 5px 4px 10px 10px;
+     }
+  h1 {
+       font-size: 1.75em;
+       font-weight: bold;
+       text-align: center;
+       margin: 2px 20px 5px 10px;
+     }
+     h2 {
+       font-size: 1.1em;
+       font-weight: bold;
+       text-align: center;
+       text-transform: uppercase;
+       margin: 2px 5px -2px 10px;
+     }
+
+</style>
+  <h1 align="center">OAuth2.0 Client side authentication with calendar demo.</h1>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+   	<script src="jquery.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+	<script type="text/javascript" src="angular-1.0.0rc9.min.js"></script>
+	<script type="text/javascript" src="angular-ui.js"></script>
+	<script type="text/javascript" src="prettify.js"></script>
+	<script type="text/javascript" src="select2.js"></script><!--not clr-->
+	<script type="text/javascript" src="app.js"></script>
+	<link href="jquery-ui.css" rel="stylesheet">
+
+
+ </head>
+<body>
+
+<script type="text/javascript">
+	var clientId = '621565343614';
+    var apiKey = 'AIzaSyB1AwXl7wOwjTOtGaO9zzznL2TfjyoaUTU';
+    var scopes = 'https://www.googleapis.com/auth/calendar';
+	
+	function handleClientLoad() {
+        gapi.client.setApiKey(apiKey);
+        window.setTimeout(checkAuth,1);
+      }
+
+      function checkAuth() {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+      }
+
+      function handleAuthResult(authResult) {
+        var authorizeButton = document.getElementById('authorize-button');
+        if (authResult) {
+          authorizeButton.style.visibility = 'hidden';
+		  } else {
+          authorizeButton.style.visibility = '';
+          authorizeButton.onclick = handleAuthClick;
+        }
+      }
+
+      function handleAuthClick(event) {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        return false;
+		
+      }
+	
+		// function to retrieve recnet event information from calendar project
+	    function makeApiCallLast() {  
+	
+		gapi.client.load('calendar', 'v3', function() { 
+		var request = gapi.client.calendar.events.list({  
+		'calendarId': 'primary' 
+		});
+ 		request.execute(function(resp) {
+		var output, output1,output2, output3 ;
+		for (var i = resp.items.length - 1 ; i > resp.items.length - 2; i--) {
+		var summary = resp.items[i].summary;
+		var location = resp.items[i].location;
+		var start = resp.items[i].start.dateTime;
+		var end = resp.items[i].end.dateTime;
+
+		output = 'summary:  "' + summary + '"\n' ;
+		output1 = 'Where: "' + location + '"\n';
+		output2 = 'Start at:' + start ;
+		output3 = 'end at:' + end ;
+
+		$('#result').html(output);
+		$('#result1').html(output1);
+		$('#result2').html(output2);
+		$('#result3').html(output3);
+
+		}
+	});
+	});
+	}
+		
+
+</script>
+	
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script> 
+	<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+    <table class="content" align="center">
+	<tr>
+	<td width="700"><div style="border:thick"  ><table border="0" align="center" >
+	<tr >
+	<td width="10"></td>  
+Here you can create events on your google calendar and retrieve event information from your calendar.<br />
+Make sure that you are logged in your gmail account.
+<!--Add a button for the user to click to initiate auth sequence -->
+ <button id="authorize-button"  style="visibility: hidden" > Authorize </button>  <br /><br /><br />
+ 
+	      <td >
+ <label><h4>Create day event in your google calendar<h4></label>
+		   <div ng-app="demo">
+		   <div ng-controller="ctrl">
+	       <form name="myForm" >
+	       
+	          <label>Event summary:</label>
+	          <input type="text" ng-model="form.summary" value="summary" size =" 33"  />
+	          <br/><br/>
+	         
+	          <label>Location:</label>
+	          <input type="text" ng-model="form.location" value="office" />
+	          <br/>
+	        
+	          <label>Start time:</label>
+
+			<input ng-model="form.start.dateTime" type="text" name="startdate" id="startdate" ui-date="x"/>
+          
+			<br/>
+	          <label>End time:</label>
+           
+			<input ng-model="form.end.dateTime" type="text" name="enddate" id="enddate" ui-date="x"/>
+			</form>
+			
+			<button ng-model="form.btn" ng-click="save();" id="btnAdd">Creat event</button>
+			<!-- <pre>form = {{form | json}}</pre>-->
+	        </div>
+			</div>
+         </td>
+	     </tr>
+		  <tr >
+	      <td></td>
+	      <td ><h4>In order to view your event detail click on display button.</h4><br /><br />
+          <div id="result"></div>
+          <div id="result1"></div>
+          <div id="result2"></div>
+          <div id="result3"></div><br />
+          <button id="display" onClick ="makeApiCallLast();"> Display event</button>
+           <a href="http://netsolet.heliohost.org/index.html"> Home </a> 
+
+          </td>
+	      <td >&nbsp;</td>
+        </tr>
+	    
+   </table></div><td width="589">
+    </td></tr>
+	</table>
+
+  </body>
+</html>
