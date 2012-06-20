@@ -6,4 +6,5 @@ Requirement to run the application
 --Eclipse 
 --Plugin
 --Display the access token and your profile
--- Create applciation on google app engine
+--Create applciation on google app engine
+More specification
