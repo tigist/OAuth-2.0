@@ -1,0 +1,4 @@
+**** Server side OAuth 2.0 ***
+
+- Create applciation on google app engine
+- 
