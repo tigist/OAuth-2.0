@@ -34,8 +34,6 @@
      <script src="angular-1.0.0rc9.min.js"></script>
     <link rel="stylesheet" type="text/css" href="calendar.css"/>
     <script type="text/javascript" charset="utf8" src="calendar.js"></script>
-
-
    </head>
   <body>
 
@@ -79,20 +77,7 @@
 	
 	function Ctrl($scope) {
 		$scope.eventInfo = {};
-		
-	   /*$scope.process = function () {
-		var dtval = document.myForm.startdate.value;
-		var dt =  new Date(dtval);
-		var result = dt.toISOString();
-		document.myForm.startdate1.value = result;
-		
-		var dtval2 =  document.myForm.enddate.value; 
-		var dt2 =  new Date(dtval2);
-		var result = dt2.toISOString();
-		document.myForm.enddate1.value =result;
-	}*/
-		
-	$scope.save = function() { 
+		$scope.save = function() { 
 		var dtval = document.myForm.startdate.value;	
 		var dt =  new Date(dtval);
 		var result = dt.toISOString();
@@ -155,52 +140,41 @@
 	});
 	});
 	}
-		
-
-    </script>
+   </script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script> 
 	<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
   <table class="content">
-	<tr>
+  <tr>
 
 	  <td width="900"><div style="border:thick"  >
-
-    Here you can create events on your google calendar and retrieve event information from your calendar.<br />
-Make sure that you are logged in your gmail account.
+     Here you can create events on your google calendar and retrieve event information from your calendar.<br />
+     Make sure that you are logged in your gmail account.
 <!--Add a button for the user to click to initiate auth sequence -->
- <button id="authorize-button"  style="visibility: hidden" > Authorize </button>  <br /><br /><br />
-
-            <table border="0" align="center" >
-	   	    <tr >
-	      <td width="10"></td>  
-               <td >
+ <button id="authorize-button"  style="visibility: hidden" > Authorize </button> 
+ <br /><br /><br />
+    <table border="0" align="center" >
+	    <tr >
+        <td width="10"></td>  
+        <td >
         <h4>Create day event in your google calendar<h4>
-                 <div ng-controller="Ctrl" >
+        <div ng-controller="Ctrl" >
 	        <form name="myForm" >
-	        
-	          <label>Event summary:</label>
+            <label>Event summary:</label>
 	          <input type="text" ng-model="form.summary" value="summary" size =" 33"  />
 	          <br/>
-	         
 	          <label>Location:</label>
 	          <input type="text" ng-model="form.location" value="office" />
 	          <br/>
-	        
 	          <label>Start time:</label>
-
-<input ng-model="form.start.dateTime" type="text" name="startdate" id="startdate" ng-mouseover="popup1.setTarget(this);" ng-change="process();"/>
-           
-			<br/>
-	          <label>End time:</label>
-           
+ <input ng-model="form.start.dateTime" type="text" name="startdate" id="startdate" ng-mouseover="popup1.setTarget(this);" ng-change="process();"/>
+ <br/>
+ <label>End time:</label>
  <input ng-model="form.end.dateTime" type="text" name="enddate" id="enddate" ng-mouseover="popup2.setTarget(this);"/>
- 
-              <br /><br /> 
-              <button ng-click="save()" id="btnAdd">Creat event</button>
-	           </form>
-			   </div>
-         </td>
-	     </tr>
+  <br /><br /> 
+  <button ng-click="save()" id="btnAdd">Creat event</button>
+  </form>
+ </div>
+ </td> </tr>
 	    <tr >
 	      <td></td>
 	      <td ><h4>In order to view your event detail click on display button.</h4><br /><br />
@@ -209,15 +183,13 @@ Make sure that you are logged in your gmail account.
           <div id="result2"></div>
           <div id="result3"></div><br />
           <button id="display" onClick ="makeApiCallLast();" > Display event</button>
-<a href="http://netsolet.heliohost.org/index.html"> Home </a> 
+          <a href="http://netsolet.heliohost.org/index.html"> Home </a> 
           </td>
 	      <td >&nbsp;</td>
         </tr>
-	    
    </table></div>
 	  <td width="589"><strong>Attention:</strong><br /> 
     Once you picked value from the date picker you must<br/>specify hour and minute from the keyboard.</td></tr>
 	</table>
-
   </body>
 </html>
