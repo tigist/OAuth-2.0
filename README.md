@@ -19,13 +19,16 @@ You can get the brief summary of the server side OAuth 2 on <a href ="https://gi
 
 Download the Java file for implemented <a href = "http://my-test-auth2.appspot.com/">sample demo</a> which retrieve the access token and user profile. 
 
-Server side demo implementation is made based on simple http request as descirbed on <a href = "https://github.com/wjosdejong/httputil">HttpUtil</a>.
-Authenctication and authorization flow to grant access for Google API is as shown on <a href ="https://github.com/tigist/OAuth-2.0/blob/master/JavaCode/src/test/Auth.java"> code</a>
+Server side demo implementation is made based on simple HTTP request as described on <a href = "https://github.com/wjosdejong/httputil">HttpUtil</a>.
+Authentication and authorization flow to grant access for Google API is as shown on <a href ="https://github.com/tigist/OAuth-2.0/blob/master/JavaCode/src/test/Auth.java"> code</a>
 
-<h3> Requirements </h3>
-
+<h4> To use the sample java code requirements </h4>
 -- Create App engine account <a href = "https://accounts.google.com/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://appengine.google.com/&ltmpl=ae"> create account</a>
+-- Deploy your application on google app engine
+-- Use the URL as a redirect-Uri in your code.
+-- Register the redirect-Uri of your application on the Google API console
+-- Configure web.XML to uniform URL-pattern
 
--test
+
 
 
