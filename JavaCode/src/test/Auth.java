@@ -30,7 +30,7 @@ public class Auth extends HttpServlet {
 	 String CLIENT_ID = "850250253136.apps.googleusercontent.com";
 	 String CLIENT_SECRET = "mv4ckQIrlVJJNE1x3Uq0w6G4";
 	 String access_token="";
-	 String redirect_uri = "http://localhost:8888/test1";
+	 String redirect_uri = "http://my-test-auth2.appspot.com/test1";
 	 public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		 	PrintWriter out = resp.getWriter();
