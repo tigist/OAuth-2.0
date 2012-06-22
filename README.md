@@ -23,10 +23,15 @@ Server side demo implementation is made based on simple HTTP request as describe
 Authentication and authorization flow to grant access for Google API is as shown on <a href ="https://github.com/tigist/OAuth-2.0/blob/master/JavaCode/src/test/Auth.java"> code</a>
 
 <h4> To use the sample java code requirements </h4>
+
 -- Create App engine account <a href = "https://accounts.google.com/ServiceLogin?service=ah&passive=true&continue=https://appengine.google.com/_ah/conflogin%3Fcontinue%3Dhttps://appengine.google.com/&ltmpl=ae"> create account</a>
+
 -- Deploy your application on google app engine
+
 -- Use the URL as a redirect-Uri in your code.
+
 -- Register the redirect-Uri of your application on the Google API console
+
 -- Configure web.XML to uniform URL-pattern
 
 
