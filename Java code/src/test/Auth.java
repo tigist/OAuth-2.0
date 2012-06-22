@@ -1,9 +1,6 @@
 /**
  * Test OAuth 2.0 with Google API
- * 
- * Jos de Jong, 2012-05-11
- * Modified
- * Used libraries:
+ *  Used libraries:
  *     jackson-annotations-2.0.0.jar
  *     jackson-core-2.0.0.jar
  *     jackson-databind-2.0.0.jar
@@ -15,14 +12,8 @@ package test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,17 +23,6 @@ import com.almende.util.HttpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson.JacksonFactory;
-import com.google.api.services.calendar.Calendar;
-import com.google.api.services.calendar.model.*;
-
-import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventAttendee;
-import com.google.api.services.calendar.model.EventDateTime;
-
 @SuppressWarnings("serial")
 public class Auth extends HttpServlet {
 	// Specify the correct client id and secret for web applications
@@ -51,8 +31,6 @@ public class Auth extends HttpServlet {
 	 String CLIENT_SECRET = "mv4ckQIrlVJJNE1x3Uq0w6G4";
 	 String access_token="";
 	 String redirect_uri = "http://localhost:8888/test1";
-	// String redirect_uri = "http://my-test-auth2.appspot.com/test1";
-	
 	 public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		 	PrintWriter out = resp.getWriter();
@@ -65,6 +43,7 @@ public class Auth extends HttpServlet {
 		);
 		 	
 		if (req.getParameter("code")!=null){
+		//Second step, exchange code with access token	
 			String code = req.getParameter("code");
 			String url = "https://accounts.google.com/o/oauth2/token";
 			Map<String, String> params1 = new HashMap<String, String>();
@@ -87,9 +66,9 @@ public class Auth extends HttpServlet {
 			out.println();
 			out.println("<pre>");
 			out.println("Authorization code exchanged for access token:");
-			out.println(res); //full information returned as json (access-token, expire, token-type)
-			out.println();
-			out.println();
+			out.println(res); 
+			out.println();	out.println();
+			
 		// Third step: use the access token to call a Google API
 			Cookie tokenCookie = new Cookie("access_token", access_token);
 			resp.addCookie(tokenCookie);
@@ -102,25 +81,12 @@ public class Auth extends HttpServlet {
 			out.println("Retrieved user information is:");
 			out.println(info);
 			out.println("</pre>");
-			//=========================================================
-			
-			//String url1 = "https://www.googleapis.com/calendar/v3/calendars/primary/events";	
-			//String url1 = " https://www.googleapis.com/calendar/v3/users/me/calendarList/primary";
-			String url1 = "https://www.googleapis.com/auth/userinfo.email";
-			Map<String, String> headers = new HashMap<String, String>();
-			headers.put("Authorization", "Bearer " + access_token);
-			String cal = HttpUtil.get(url1, headers);//info is a url returned
-			out.println("<pre>");
-			out.println();
-			out.println("calendar evets are");
-			out.print(cal);
-			out.println("</pre>");  
-			
-		} 
+	
+			} 
 					
 			else 	{
 				
-		// First step: user must grant access
+		  // First step: user must grant access
 			String space = " ";
 			String scope = "https://www.googleapis.com/auth/calendar" + space +
 			"https://www.googleapis.com/auth/userinfo.profile" + space +
@@ -136,8 +102,6 @@ public class Auth extends HttpServlet {
 			params.put("approval_prompt", "force");
 			String fullUrl = HttpUtil.appendQueryParams(url, params); //information captured
 			out.println("<pre>");
-			out.println();
-			out.println();
 			out.println();
 			out.print("Click here to <a href=\" " + fullUrl + "\">Authorize</a> access to your google acount");
 			out.println("</pre>");
