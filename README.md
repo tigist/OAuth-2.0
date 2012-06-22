@@ -2,8 +2,6 @@
 
 https://github.com/tigist/OAuth-2.0/wiki
  
-
-OAuth for Server side application
 <h3>Client side application</h3>
 You can get the short summary of the client side OAuth 2 on <a href ="https://github.com/tigist/OAuth-2.0/wiki/Client-side-Authentication"> wiki</a>
 
