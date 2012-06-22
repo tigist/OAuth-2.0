@@ -5,7 +5,7 @@ https://github.com/tigist/OAuth-2.0/wiki
 <h3>Client side application</h3>
 You can get the brief summary of the client side OAuth 2 on <a href ="https://github.com/tigist/OAuth-2.0/wiki/Client-side-Authentication"> wiki</a>
 
-Download the JavaScript file for implemented <a href="http://netsolet.heliohost.org/">sample</a>
+Download the <a href ="https://github.com/tigist/OAuth-2.0">JavaScript </a>file for implemented <a href="http://netsolet.heliohost.org/">sample</a>
 
 Run it in your local server approach and run the html files using Firefox browser.
 
