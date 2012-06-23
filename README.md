@@ -33,9 +33,9 @@ Authentication and authorization flow to grant access for Google API is as shown
 
 -- Deploy your application on google app engine
 
--- Use the URL as a redirect-Uri.
+-- Use the URL as a redirect-Uri
 
--- Register the redirect-Uri of your application on the Google API console
+-- Register the redirect-Uri of your application on the Google <a href = "https://developers.google.com/google-apps/calendar/firstapp#register">API console</a>
 
 -- Configure web.XML to uniform URL-pattern
 
