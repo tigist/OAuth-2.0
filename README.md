@@ -19,8 +19,7 @@ Library used
 
 Brief summary of server side OAuth2.0 <a href ="https://github.com/tigist/OAuth-2.0/wiki/Server-side-authentication"> wiki </a>
 
-Download the Java file for server side OAuth2.0 based application. The application is run on Google App Engine to 
-retrieve the authorization information and your profile.
+Download the Java file for server side OAuth2.0 based application. The application retrieve the authorization information and your profile.
 <a href = "http://my-test-auth2.appspot.com/">sample demo</a>  
 
 Server side demo implementation is made based on simple HTTP request as described on <a href = "https://github.com/wjosdejong/httputil">HttpUtil</a>.
